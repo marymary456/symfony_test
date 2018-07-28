@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create post{% endblock %}
+
+{% block content %}
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading" align="center">Create your Post!</h1>
+        <p class="lead" align="center">Add title:</p>
+        <p class="lead" align="center">
+        <div class="form-group">
+            {{ form_start(form) }}
+        </div>
+            {{ form_end(form) }}
+    </main>
+{% endblock %}

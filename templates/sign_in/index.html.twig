@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/signin.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+<div align="center">
+    {% if error %}
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    {% endif %}
+    {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        {{ form_row(form._username) }}
+        {{ form_row(form._password) }}
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button  type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+        {{ form_end(form) }}
+</div>
+{% endblock %}

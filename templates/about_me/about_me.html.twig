@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ user }}!{% endblock %}
+
+{% block content %}
+    <body>
+    <div class="container">
+        <h2>About {{ user }}</h2>
+        <p>User information:</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Blog Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ user }}</td>
+                <td>{{ app.user.id }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ blog }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </body>
+{% endblock %}
+
+
+
+
+
+

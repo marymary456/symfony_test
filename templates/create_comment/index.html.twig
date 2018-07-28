@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create comment{% endblock %}
+
+{% block body %}
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading" align="center">Create your Comment!</h1>
+        <p class="lead" align="center">Add comment:</p>
+        <p class="lead" align="center">
+        <div class="form-group">
+            {{ form_start(form) }}
+        </div>
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

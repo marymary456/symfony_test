@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign up{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/registration.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+<body class="text-center">
+        {{ form_start(form, {'attr': {'class': 'form-signup'}})}}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Agree to our Terms, Data Policy and Cookies Policy.
+            </label>
+        </div>
+        <button class="btn" type="submit">Sign up</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+        {{ form_end(form) }}
+</body>
+{% endblock %}
