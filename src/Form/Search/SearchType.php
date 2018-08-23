@@ -3,6 +3,7 @@
 namespace App\Form\Search;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,21 +16,11 @@ class SearchType extends AbstractType
             ->add('search', TextType::class, array(
                 'attr' => array('class' => 'form-control',
                 'name' => 'search',
-                'placeholder' => 'Search User'),
+                'placeholder' => 'Search'),
                 'label' => false))
-//            ->add('select', ChoiceType::class, array(
-//                'choices'  => array(
-//                    'ID' => true,
-//                    'Username' => false,
-//                ),
-//                'label' => false,
-//                'placeholder' => 'By',
-//                'required' => true,
-//
-//                'attr' => array(
-//                    'name' => 'select',
-//                    'class' =>"form-control"
-//                )))
+            ->add('submit', SubmitType::class,array(
+                'attr' => array('class' => 'btn btn-secondary'),
+                'label' => 'Go!'))
         ->getForm();
 
     }

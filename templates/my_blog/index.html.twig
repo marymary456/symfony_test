@@ -1,24 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/layout.html.twig' %}
 
-{% block title %}Hello  {% endblock %}
+{% block title %}{{ blog }}{% endblock %}
 
 {% block content %}
     <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        body {
+            background-image: url("https://i.pinimg.com/736x/61/1e/dd/611eddafb2ae5f6f8c927efd25441fd5.jpg");
+            background-color: white;
+            background-attachment: fixed;
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: 500px;
+        }
     </style>
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
 
-    <div class="example-wrapper">
-        <h1>{{ blog }}✅</h1>
+    <h1 class="my-4">{{ blog }}
+        <small></small>
+    </h1>
 
-        <h3>Posts</h3>
-        <ul>
-            {% for post in posts %}
-                <h4><a href="{{ path('get_post', {'postId': post.id}) }}">{{ post.title}}</a></h4>
-                <p>{{ post.createdAt | date("F jS \\a\\t g:ia") }}</p>
-                <p>{{ post.content}}</p>
-            {% endfor %}
-        </ul>
+    <!-- Blog Post -->
+    {% for post in posts %}
+    <div class="card mb-4">
+        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title"><a href="{{ path('get_post', {'postId': post.id}) }}">{{ post.title}}</a></h2>
+            <p class="card-text">{{ post.content}}</p>
+            <a href="{{ path('get_post', {'postId': post.id}) }}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            {{ post.createdAt | date("F jS \\a\\t g:ia") }} by
+            <a href="#">Start Bootstrap</a>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>
     </div>
 
 {% endblock %}

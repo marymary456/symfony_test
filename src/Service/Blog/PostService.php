@@ -67,4 +67,10 @@ class PostService implements PostServiceInterface
         $posts = $blog->getPosts();
         return $posts;
     }
+
+    public function getAllPosts()
+    {
+        $posts = $this->postRepository->findAll();
+        return $posts;
+    }
 }

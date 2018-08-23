@@ -3,6 +3,7 @@ namespace App\Form\User;
 
         use App\Entity\User\User;
         use Symfony\Component\Form\AbstractType;
+        use Symfony\Component\Form\Extension\Core\Type\SubmitType;
         use Symfony\Component\Form\FormBuilderInterface;
         use Symfony\Component\OptionsResolver\OptionsResolver;
         use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -30,10 +31,10 @@ namespace App\Form\User;
                         'placeholder' => 'Password')),
                         'second_options' => array('label' => false,
                         'attr' => array ('class' => 'form-control',
-                        'placeholder' => 'Confirm Password')),
-
-                    ))
-                ;
+                        'placeholder' => 'Confirm Password'))))
+                    ->add('submit', SubmitType::class, array(
+                        'attr' => array('class' => 'btn btn-lg btn-primary btn-block'),
+                        'label' => 'Sign up'));
             }
 
             public function configureOptions(OptionsResolver $resolver)

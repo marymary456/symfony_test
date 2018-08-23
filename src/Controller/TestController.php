@@ -5,10 +5,11 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class TestController extends Controller
 {
     /**
-     * @Route("/test", name="test")
+     * @Route("/test", name="test_path")
      */
     public function index()
     {

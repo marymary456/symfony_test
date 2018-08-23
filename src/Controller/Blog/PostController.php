@@ -14,6 +14,7 @@ use App\Service\Blog\PostService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class PostController extends Controller
 {
@@ -30,7 +31,7 @@ class PostController extends Controller
     }
 
     /**
-     *
+     * @Security("has_role('ROLE_USER')")
      * @Route("/new/post", name="new_post")
      *
      */
@@ -81,6 +82,7 @@ class PostController extends Controller
             $comments = $post->getComments();
             $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $text = $comment->getComment();
             $comment->setComment($text);
@@ -101,7 +103,6 @@ class PostController extends Controller
             ]);
 
     }
-
 }
 
 

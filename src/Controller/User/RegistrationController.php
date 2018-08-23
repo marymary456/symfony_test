@@ -35,7 +35,6 @@ class RegistrationController extends Controller
             $em->persist($user);
             $em->flush();
 
-
             return $this->redirectToRoute('home');
         }
 

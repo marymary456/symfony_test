@@ -1,50 +1,82 @@
-<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="shortcut icon" href="https://cdn.instructables.com/FW0/FUZZ/G68H97CB/FW0FUZZG68H97CB.LARGE.gif">
-        <link href="{{ asset('css/base.css') }}" rel="stylesheet"/>
-    </head>
-    {% block body %}
-    <body>
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="masthead mb-auto">
-            <div class="inner">
-                <h3 class="masthead-brand"> <a class="nav-link active" href="{{ path('home') }}">BBlog</a></h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Hello, {{ app.user.username }}</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('about_me', {'id': app.user.id} )}}">About me</a>
-                                <a class="dropdown-item" href="{{ path('create_blog')}}">Create Blog</a>
-                                <a class="dropdown-item" href="">Settings</a>
+<head>
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheet %}{% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://habrastorage.org/storage2/f00/9a0/04e/f009a004e226a07b493dac212c3da6de.png" />
+{% endblock %}
+</head>
+<body>
+{% block body %}
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('home') }}">BBlog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('home') }}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('test_path') }}">About</a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">{{ app.user.username }}</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('about_me', {'id': app.user.id} )}}">About me</a>
+                            <a class="dropdown-item" href="{{ path('create_blog')}}">Create Blog</a>
+                            <a class="dropdown-item" href="">Settings</a>
                             <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
-                            </div>
-                        </li>
-                        <a class="nav-link" href="{{ path('my_blog', {'id': app.user.getBlog().getId()}) }}">My Blog</a>
-                        <a class="nav-link" href="{{ 'new/post' }}">New Post</a>
-                    {% endif %}
-                    {% if (not is_granted ('IS_AUTHENTICATED_FULLY')) %}
-                        <a class="nav-link active" href="{{ path('sign_in') }}">Sign in</a>
-                        <a class="nav-link" href="{{ path('user_registration') }}">Sign up</a>
-                        <a class="nav-link" href="{{ 'test' }}">About</a>
-                    {% endif %}
-                </nav>
-            </div>
-        </header>
-        {% block content %}{% endblock %}
-        <footer class="mastfoot mt-auto">
-            <div class="inner" align="center">
-                <p>Template, by <a> Mary</a>.</p>
-            </div>
-        </footer>
-        {% block javascripts %}{% endblock %}
+                            <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
+                        </div>
+                    </li>
+                    <a class="nav-link" href="{{ path('my_blog', {'id': app.user.getBlog().getId()}) }}">My Blog</a>
+                    <a class="nav-link" href="{{ 'new_post' }}">New Post</a>
+                {% endif %}
+                {% if (not is_granted ('IS_AUTHENTICATED_FULLY')) %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sign_in') }}">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_registration') }}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    </body>
-    {% endblock %}
+</nav>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            {% block row %}{% endblock %}
+
+    {% block content %}{% endblock %}
+    {% block sidebar %}{% endblock %}
+    </div>
+    <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+{% block javascripts %}
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+{% endblock %}
+</body>
 </html>
+

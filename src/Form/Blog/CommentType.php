@@ -18,7 +18,9 @@ class CommentType extends AbstractType
                 'attr' => array('class' => 'form-control',
                     'rows' => '3',
                     'id' => 'comment',
-                    'name' => 'comment')))
-            ->add('submit', SubmitType::class);
+                    'name' => 'comment'),
+            'label' => false))
+            ->add('submit', SubmitType::class, array(
+                'attr' => array('class' => 'btn btn-primary')));
     }
 }

@@ -10,23 +10,25 @@ use App\Entity\Blog\Post;
 use App\Entity\User\User;
 use App\Exception\Blog\BlogNotFoundException;
 use App\Exception\User\UserNotFoundException;
+use App\Repository\Blog\BlogRepository;
 use App\Service\User\UserService;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 class BlogManager implements BlogManagerInterface
 {
-    private $doctrine;
     private $userService;
     private $postService;
     private $commentService;
+    private $blogRepository;
 
 
-    public function __construct(ManagerRegistry $doctrine, UserService $userService, PostService $postService, CommentService $commentService)
+    public function __construct(UserService $userService, PostService $postService, CommentService $commentService, BlogRepository $blogRepository)
     {
-        $this->doctrine = $doctrine;
+
         $this->userService = $userService;
         $this->postService = $postService;
         $this->commentService = $commentService;
+        $this->blogRepository = $blogRepository;
 
     }
 
@@ -38,8 +40,7 @@ class BlogManager implements BlogManagerInterface
      */
     public function getBlogByID (int $id){
 
-        $blog = $this->doctrine->getRepository(Blog::class)
-            ->find($id);
+        $blog = $this->blogRepository->find($id);
         if (!$blog) {
             throw new BlogNotFoundException('Blog not found');
         }
@@ -55,8 +56,7 @@ class BlogManager implements BlogManagerInterface
      */
     public function getBlogByTitle (string $title)
     {
-        $blog =$this->doctrine->getRepository(Blog::class)
-            ->findOneBy(['title' => $title]);
+        $blog =$this->blogRepository->findOneBy(['title' => $title]);
         if (!$blog) {
             throw new BlogNotFoundException('Blog not found');
         }

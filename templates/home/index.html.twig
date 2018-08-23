@@ -1,0 +1,47 @@
+{% extends 'home/layout.html.twig' %}
+{% block content %}
+    <style>
+        body {
+            background-image: url("http://wallpapertag.com/wallpaper/full/d/c/e/980184-cool-smile-more-wallpapers-1920x1080-for-iphone-5.jpg");
+            background-color: #cccccc;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+        <h1 class="my-4">BBlog
+            <small>Home page</small>
+        </h1>
+
+        <!-- Blog Post -->
+        {% for post in posts %}
+        <div class="card mb-4">
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <div class="card-body">
+                <h2 class="card-title"><a href="{{ path('get_post', {'postId': post.id}) }}">{{ post.title }}</a></h2>
+                <p class="card-text">{{ post.content }}</p>
+                <a href="{{ path('get_post', {'postId': post.id}) }}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+                {{ post.createdAt | date("F jS \\a\\t g:ia") }} by
+                <a href=""></a>
+
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+                <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+
+{% endblock %}

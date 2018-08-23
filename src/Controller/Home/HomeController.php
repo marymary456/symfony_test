@@ -3,13 +3,32 @@
 namespace App\Controller\Home;
 
 
+use App\Entity\Blog\Post;
 use App\Form\Search\SearchType;
+use App\Repository\Blog\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Service\Blog\PostService;
 
 class HomeController extends Controller
 {
+
+    private $postService;
+    private $postRepository;
+
+
+    /**
+     * HomeController constructor.
+     * @param $postService
+     */
+    public function __construct(PostService $postService, PostRepository $postRepository)
+    {
+        $this->postService = $postService;
+        $this->postRepository = $postRepository;
+    }
+
+
     /**
      * @Route("/", name="home")
      */
@@ -25,8 +44,12 @@ class HomeController extends Controller
             return $this->redirectToRoute('search_username', ['search' => $data['search']]);
         }
 
+        $posts = $this->postRepository->findBy(
+            array(),
+            array('title' => 'DESC'));
 
         return $this->render('home/index.html.twig',
-            ['form' => $form->createView()]);
+            ['form' => $form->createView(),
+             'posts' => $posts]);
     }
 }

@@ -1,11 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/layout.html.twig' %}
 
 {% block title %}Hello {{ user }}!{% endblock %}
-
 {% block content %}
-    <body>
-    <div class="container">
-        <h2>About {{ user }}</h2>
+<div class="col-md-8">
+        <h2>{{ user }}</h2>
         <p>User information:</p>
         <table class="table table-striped">
             <thead>
@@ -25,8 +23,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
-    </body>
+</div>
 {% endblock %}
 
 

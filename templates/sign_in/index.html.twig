@@ -1,25 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Sign in{% endblock %}
-{% block stylesheets %}
-    <link href="{{ asset('css/signin.css') }}" rel="stylesheet"/>
-{% endblock %}
-{% block content %}
-<div align="center">
-    {% if error %}
-        {{ error.messageKey|trans(error.messageData, 'security') }}
-    {% endif %}
+
+{% block row %}
+    <style>
+        .text-center {
+            width: 300px;
+            height: 300px;
+            margin-top: 300px;
+            margin-left: 380px;
+            margin-right: 380px;
+
+        }
+        .btn {
+            width: 120px;
+            margin-top: 15px;
+            margin-left: 90px;
+        }
+        .form-control {
+            margin: 5px;
+            background-color: #F9F9F9;
+        }
+        body {
+            background-image: url("https://i0.wp.com/journal.matras-strong.ru/app/uploads/2017/04/eduard-militaru-98570-e1513861707617.jpg?fit=2000%2C1333&ssl=1");
+            background-color: #cccccc;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        h1 {
+            color: gray();
+
+        }
+    </style>
+<div class="text-center">
     {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        {{ form_row(form._username) }}
-        {{ form_row(form._password) }}
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button  type="submit">Sign in</button>
+    {{ form_row(form._username) }}
+    {{ form_row(form._password) }}
+    {{ form_row(form.submit) }}
         <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
         {{ form_end(form) }}
+    {% if error %}
+    {{ error.messageKey|trans(error.messageData, 'security') }}
+    {% endif %}
 </div>
 {% endblock %}
+
+
+
