@@ -1,17 +1,14 @@
-{% extends 'home/layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Create post{% endblock %}
+{% block stylesheet  %}<link href="{{ asset('css/add_post.css') }}" rel="stylesheet"/>{% endblock %}
+{% block row %}
 
-{% block content %}
-<div class="col-md-8">
-    <main role="main" class="inner cover">
-        <h1 class="cover-heading" align="center">Create your Post!</h1>
-        <p class="lead" align="center">Add title:</p>
-        <p class="lead" align="center">
-        <div class="form-group">
+   <div class="text-center">
             {{ form_start(form) }}
-        </div>
+            {{ form_row(form.title) }}
+            {{ form_row(form.content) }}
+                {{ form_row(form.submit) }}
             {{ form_end(form) }}
-    </main>
-</div>
+   </div>
 {% endblock %}

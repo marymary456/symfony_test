@@ -7,6 +7,7 @@ use App\Entity\Blog\Blog;
 use App\Entity\User\User;
 use App\Form\Blog\BlogType;
 use App\Form\Search\SearchType;
+use App\Repository\Blog\PostRepository;
 use App\Service\Blog\BlogManager;
 use App\Service\Blog\PostService;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +21,16 @@ class BlogController extends Controller
     private $blogManager;
     private $postService;
     private $searchType;
+    private $postRepository;
 
 
 
-    public function __construct(BlogManager $blogManager, PostService $postService, SearchType $searchType)
+    public function __construct(PostRepository $postRepository, BlogManager $blogManager, PostService $postService, SearchType $searchType)
     {
         $this->blogManager = $blogManager;
         $this->postService = $postService;
         $this->searchType = $searchType;
+        $this->postRepository = $postRepository;
 
 
     }
@@ -62,16 +65,19 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/my/blog/{id}", name="my_blog")
+     * @Route("/blog/{id}", name="blog_path")
      */
     public function getUserBlog ($id, Request $request){
         /**
          * @var Blog $blog;
          */
         $blog = $this->blogManager->getBlogByID($id);
-        $posts = $this->postService->getAllPostsOfBlog($blog);
 
-        return $this->render('my_blog/index.html.twig', [
+        $posts = $this->postRepository->findBy(
+            [],
+            ['id' => 'DESC']);
+
+        return $this->render('blog/index.html.twig', [
             'blog' => $blog->getTitle(),
             'posts' => $posts]);
 

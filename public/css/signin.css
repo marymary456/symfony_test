@@ -1,0 +1,26 @@
+.text-center {
+    width: 300px;
+    height: 300px;
+    margin-top: 300px;
+    margin-left: 380px;
+    margin-right: 380px;
+
+}
+.btn {
+    width: 120px;
+    margin-top: 15px;
+    margin-left: 90px;
+}
+.form-control {
+    margin: 5px;
+    background-color: #F9F9F9;
+}
+body {
+    background-image: url("https://i0.wp.com/journal.matras-strong.ru/app/uploads/2017/04/eduard-militaru-98570-e1513861707617.jpg?fit=2000%2C1333&ssl=1");
+    background-color: #cccccc;
+    background-size: cover;
+    background-attachment: fixed;
+}
+h1 {
+    color: gray;
+}

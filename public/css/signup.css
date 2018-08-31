@@ -1,0 +1,27 @@
+.text-center {
+    width: 300px;
+    height: 300px;
+    margin-top: 250px;
+    margin-left: 380px;
+    margin-right: 380px;
+
+
+}
+.btn {
+    width: 120px;
+    margin-top: 15px;
+    margin-left: 90px;
+}
+.form-control {
+    margin: 5px;
+    background-color: #F9F9F9;
+}
+body {
+    background-image: url("https://img2.goodfon.ru/original/2560x1440/9/fc/aloe-rastenie-zelenyi-zelenoe-rastenie-temnyi-temnye-tona-mi.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    background-attachment: fixed;
+}
+h1 {
+    color: #F9F9F9;
+}

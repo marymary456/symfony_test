@@ -19,13 +19,17 @@ class PostType extends AbstractType
                 'attr' => array('class' => 'form-control',
                     'name' => 'title',
                     'id' => 'usr',
-                    'placeholder' => 'Add title')))
+                    'placeholder' => 'Add title'),
+                    'label' => false))
             ->add('content', TextareaType::class, array(
                 'attr' => array('class' => 'form-control',
-                    'rows' => '5',
+                    'rows' => '20',
                     'id' => 'comment',
                     'name' => 'content',
-                    'placeholder' => 'Add content')))
-            ->add('submit', SubmitType::class);
+                    'placeholder' => 'Add content'),
+                    'label' => false))
+            ->add('submit', SubmitType::class, array(
+                'attr' => array('class' => 'btn btn-lg btn-primary btn-block'),
+                'label' => 'Add'));
     }
 }

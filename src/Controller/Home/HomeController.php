@@ -6,6 +6,7 @@ namespace App\Controller\Home;
 use App\Entity\Blog\Post;
 use App\Form\Search\SearchType;
 use App\Repository\Blog\PostRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,8 +46,10 @@ class HomeController extends Controller
         }
 
         $posts = $this->postRepository->findBy(
-            array(),
-            array('title' => 'DESC'));
+            [],
+            ['id' => 'DESC']);
+
+
 
         return $this->render('home/index.html.twig',
             ['form' => $form->createView(),

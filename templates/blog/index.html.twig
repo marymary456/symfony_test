@@ -1,26 +1,16 @@
 {% extends 'home/layout.html.twig' %}
 
 {% block title %}{{ blog }}{% endblock %}
-
+{% block stylesheet  %}<link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>{% endblock %}
 {% block content %}
-    <style>
-        body {
-            background-image: url("https://i.pinimg.com/736x/61/1e/dd/611eddafb2ae5f6f8c927efd25441fd5.jpg");
-            background-color: white;
-            background-attachment: fixed;
-            background-position: right bottom;
-            background-repeat: no-repeat;
-            background-size: 500px;
-        }
-    </style>
+
     <!-- Blog Entries Column -->
     <div class="col-md-8">
 
     <h1 class="my-4">{{ blog }}
         <small></small>
     </h1>
-
-    <!-- Blog Post -->
+        <!-- Blog Post -->
     {% for post in posts %}
     <div class="card mb-4">
         <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
@@ -31,7 +21,7 @@
         </div>
         <div class="card-footer text-muted">
             {{ post.createdAt | date("F jS \\a\\t g:ia") }} by
-            <a href="#">Start Bootstrap</a>
+            <a href="{{ path('blog_path', {'id': post.blog.id}) }}">{{ post.blog.user.username }}</a>
         </div>
     </div>
     {% endfor %}
